@@ -16,10 +16,23 @@ app.get('/', (req, res) => {
 });
 
 // on the connection made to the server
-io.on('connection', function(socket) {  
+io.on('connection', function(socket) {
     usercount++;
     console.log('a user connected, total users online : ', usercount);
 
+    // server code to handle the new user
+    socket.on('user', function(data) {
+        //console.log("new user: ", data);
+        // check if the data is already there
+        if (users.indexOf(data) > -1) {
+            console.log("The username is already taken!");
+        } else {
+            users.push(data);
+        }
+        console.log("Users Connected: ", users);
+    });
+
+    // server code to handle the message sent by the user
     socket.on('chat message', function(msg) {
         //console.log('message: ' + msg);
         io.emit('chat message', msg);
@@ -30,7 +43,7 @@ io.on('connection', function(socket) {
         usercount--;
         console.log('user disconnected, total users online : ', usercount);
     });
- });
+});
 
 
 // make the http server listen in port 3000
