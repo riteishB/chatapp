@@ -9,6 +9,7 @@ var io = require('socket.io')(http);
 // users array to keep track of users
 users = [];
 usercount = 0;
+
 // declare the initial route for the application
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
@@ -21,9 +22,10 @@ io.on('connection', function(socket) {
 
     socket.on('chat message', function(msg) {
         console.log('message: ' + msg);
+        io.emit('chat message', msg);
     });
 
-    // disconnect the user when the thing is out
+    // // disconnect the user when the thing is out
     socket.on('disconnect', function() {
         usercount--;
         console.log('user disconnected, total users online : ', usercount);
@@ -32,6 +34,6 @@ io.on('connection', function(socket) {
 
 
 // make the http server listen in port 3000
-http.listen(process.env.PORT || 3100, () => {
+http.listen(process.env.PORT || 3200, () => {
     console.log("Listening for connection..");
 });
