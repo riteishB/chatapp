@@ -4,6 +4,9 @@
 <head>
     <title> Chit Chat </title>
 
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -14,18 +17,17 @@
 
 
 
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
 
     <style>
         #msgbox {
             height: 500px;
-            width: 500px;
+            width: 400px;
         }
         
         #message input {
             height: 50px;
-            width: 500px;
+            width: 400px;
         }
     </style>
 
@@ -60,16 +62,24 @@
                 <p><button id="signin" class="btn btn-primary"> Login </button></p>
             </form>
         </div>
+        <div class="row">
+            <div class="col-md-6" id="msgdiv">
+                <div id="msgbox">
+                    <ul id="messages"></ul>
+                </div>
 
-        <div id="msgbox">
-            <ul id="messages"></ul>
-        </div>
+                <div id="message">
+                    <form action="" id="msgform">
+                        <p><input id="msg" autocomplete="off" /></p>
+                        <p><button id="msgbtn" class="btn btn-primary">Send</button></p>
+                    </form>
+                </div>
+            </div>
 
-        <div id="message">
-            <form action="" id="msgform">
-                <p><input id="msg" autocomplete="off" /></p>
-                <p><button id="msgbtn" class="btn btn-primary">Send</button></p>
-            </form>
+            <div class="col-md-4" id="onlinediv">
+                <p> Online users </p>
+                <div class="list-group" id="users"> </div>
+            </div>
         </div>
 
     </div>
@@ -101,6 +111,22 @@
 
         socket.on('chat message', (msg) => {
             $('#messages').append($('<li>').text(msg));
+        });
+
+        socket.on('users', (users) => {
+            $('#login').hide();
+            $('#msgbox').show();
+            $('#message').show();
+            var div = document.getElementById('users');
+            div.innerHTML = '';
+            var str = users.users;
+            console.log(str);
+            for (var i = 0; i < str.length; i++) {
+                var user = str[i].toString();
+                //console.log(user);
+                //$('#users').text(user);
+                div.innerHTML = div.innerHTML + user + '<br>';
+            }
         });
     </script>
 

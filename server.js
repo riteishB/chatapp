@@ -7,7 +7,7 @@ var io = require('socket.io')(http);
 
 
 // users array to keep track of users
-users = [];
+users = { 'users': [] };
 usercount = 0;
 
 // declare the initial route for the application
@@ -24,12 +24,13 @@ io.on('connection', function(socket) {
     socket.on('user', function(data) {
         //console.log("new user: ", data);
         // check if the data is already there
-        if (users.indexOf(data) > -1) {
+        if (users.users.indexOf(data) > -1) {
             console.log("The username is already taken!");
         } else {
-            users.push(data);
+            users.users.push(data);
         }
-        console.log("Users Connected: ", users);
+        console.log("Users Connected: ", users.users);
+        io.emit('users', users);
     });
 
     // server code to handle the message sent by the user
