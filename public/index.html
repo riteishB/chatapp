@@ -24,7 +24,8 @@
         #msgbox {
             width: 500px;
             height: 600px;
-            overflow: auto;
+            overflow-y: scroll;
+            overflow-x: wrap;
         }
 
         #message input {
@@ -122,8 +123,9 @@
             msgdiv.innerHTML = msgdiv.innerHTML + '<p><strong>' + data.user + '</strong>' + ':' +  data.msg + '</p><br>';
             //$('#messages').append($('<li>').text(msg.user));
             //$('#messages').append(text(msg.msg));
-            var messdiv = document.getElementById("msgdiv");
-            msgdiv.animate({ scrollTop: msgdiv.attr("scrollHeight") - msgdiv.height() }, 3000);
+            //var messdiv = document.getElementById("msgdiv");
+            $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
+            //messdiv.scrollTop =  messdiv.scrollHeight;      
 
         });
 
