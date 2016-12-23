@@ -10,6 +10,9 @@ var io = require('socket.io')(http);
 users = { 'users': [] };
 usercount = 0;
 
+// maintaining the list of connections to the server
+connections = [];
+
 // declare the initial route for the application
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
@@ -18,7 +21,8 @@ app.get('/', (req, res) => {
 // on the connection made to the server
 io.on('connection', function(socket) {
     usercount++;
-    console.log('a user connected, total users online : ', usercount);
+    connections.push(socket);
+    console.log('a user connected, total users online : ', connections.length);
 
     // server code to handle the new user
     socket.on('user', function(data) {
@@ -27,23 +31,34 @@ io.on('connection', function(socket) {
         if (users.users.indexOf(data) > -1) {
             console.log("The username is already taken!");
         } else {
-            users.users.push(data);
+            socket.user = data;
+            console.log("User logged in :", socket.user);
+            users.users.push(socket.user);
         }
         console.log("Users Connected: ", users.users);
-        io.emit('users', users);
+        //io.emit('users', users);
+        getuser();
     });
 
     // server code to handle the message sent by the user
     socket.on('chat message', function(msg) {
         //console.log('message: ' + msg);
-        io.emit('chat message', msg);
+        io.emit('chat message', {msg: msg, user: socket.user});
     });
 
     // disconnect the user when the thing is out
     socket.on('disconnect', function() {
         usercount--;
-        console.log('user disconnected, total users online : ', usercount);
+        users.users.splice(users.users.indexOf(socket.user),1);
+        console.log("User disconnected : ", socket.user);
+        connections.splice(connections.indexOf(socket),1);
+        console.log('user disconnected, total users online : ', connections.length);
+        getuser();
     });
+
+    function getuser(){
+        io.emit('users', users);
+    }
 });
 
 

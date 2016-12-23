@@ -20,15 +20,22 @@
 
 
     <style>
+
         #msgbox {
-            height: 500px;
-            width: 400px;
+            width: 500px;
+            height: 600px;
+            overflow: auto;
         }
-        
+
         #message input {
             height: 50px;
             width: 400px;
         }
+
+        #messages p{
+            font-size: 20px;
+        }
+
     </style>
 
 
@@ -65,7 +72,7 @@
         <div class="row">
             <div class="col-md-6" id="msgdiv">
                 <div id="msgbox">
-                    <ul id="messages"></ul>
+                    <div id="messages"></div>
                 </div>
 
                 <div id="message">
@@ -105,12 +112,19 @@
             // emit the message the user is sending 
             socket.emit('chat message', $('#msg').val());
             // clear the message variable once message has been sent
-            $('#msg'.val(''));
+            $('#msg').val('');
             return false;
         });
 
-        socket.on('chat message', (msg) => {
-            $('#messages').append($('<li>').text(msg));
+        socket.on('chat message', (data) => {
+            //console.log(data.msg);
+            var msgdiv = document.getElementById("messages");
+            msgdiv.innerHTML = msgdiv.innerHTML + '<p><strong>' + data.user + '</strong>' + ':' +  data.msg + '</p><br>';
+            //$('#messages').append($('<li>').text(msg.user));
+            //$('#messages').append(text(msg.msg));
+            var messdiv = document.getElementById("msgdiv");
+            msgdiv.animate({ scrollTop: msgdiv.attr("scrollHeight") - msgdiv.height() }, 3000);
+
         });
 
         socket.on('users', (users) => {
@@ -125,7 +139,7 @@
                 var user = str[i].toString();
                 //console.log(user);
                 //$('#users').text(user);
-                div.innerHTML = div.innerHTML + user + '<br>';
+                div.innerHTML = div.innerHTML + '<b>' + user + '<br>';
             }
         });
     </script>
