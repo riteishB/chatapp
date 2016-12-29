@@ -23,7 +23,7 @@
 
         #msgbox {
             width: 500px;
-            height: 600px;
+            height: 500px;
             overflow-y: scroll;
             overflow-x: wrap;
         }
@@ -35,6 +35,36 @@
 
         #messages p{
             font-size: 20px;
+        }
+
+        .jumbotron{
+            height:150px;
+            background: #26c6da;
+            color:#e0f7fa;
+        }   
+        
+        #msgwell{
+            background: #43A047;
+            color: white;
+        }
+
+        #titlebar{
+            height:40px;
+            background: #1E88E5;
+            color: white;
+            padding-left: 10px;
+        }
+
+        #users{
+            color:green;
+            font-size: 14px;
+            height:400px;
+            overflow-y: scroll;
+            padding: 5px;  
+        }
+
+        #usrnm{
+            color: #303F9F  ;
         }
 
     </style>
@@ -85,8 +115,11 @@
             </div>
 
             <div class="col-md-4" id="onlinediv">
-                <p> Online users </p>
-                <div class="list-group" id="users"> </div>
+                <div id="titlebar"> 
+                    <h1> Online Users </h1>
+                </div>
+                <div class="list-group" id="users"> 
+                </div>
             </div>
         </div>
 
@@ -96,10 +129,11 @@
         // hidden elemets will be reveled once the user signs in 
         $('#msgbox').hide();
         $('#message').hide();
+        $('#onlinediv').hide();
         var socket = io();
 
         // once the user presses the button
-        $('#signin').on("click", function(e) {
+        $('#signin').on('click touchstart', function(e) {
             e.preventDefault();
             // emit the user name to the server
             socket.emit('user', $('#username').val());
@@ -108,7 +142,7 @@
         });
 
         // when the user selects to send the message
-        $('#msgbtn').on("click", function(e) {
+        $('#msgbtn').on('click touchstart', function(e) {
             e.preventDefault();
             // emit the message the user is sending 
             socket.emit('chat message', $('#msg').val());
@@ -120,7 +154,7 @@
         socket.on('chat message', (data) => {
             //console.log(data.msg);
             var msgdiv = document.getElementById("messages");
-            msgdiv.innerHTML = msgdiv.innerHTML + '<p><strong>' + data.user + '</strong>' + ':' +  data.msg + '</p><br>';
+            msgdiv.innerHTML = msgdiv.innerHTML + '<div class="well well-sm" id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : ' +  data.msg + '</div>';
             //$('#messages').append($('<li>').text(msg.user));
             //$('#messages').append(text(msg.msg));
             //var messdiv = document.getElementById("msgdiv");
@@ -133,6 +167,7 @@
             $('#login').hide();
             $('#msgbox').show();
             $('#message').show();
+            $('#onlinediv').show();
             var div = document.getElementById('users');
             div.innerHTML = '';
             var str = users.users;
@@ -144,6 +179,7 @@
                 div.innerHTML = div.innerHTML + '<b>' + user + '<br>';
             }
         });
+
     </script>
 
 
