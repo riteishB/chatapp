@@ -44,7 +44,7 @@
         }   
         
         #msgwell{
-            background: #43A047;
+            background: #AB47BC;
             color: white;
         }
 
@@ -64,7 +64,7 @@
         }
 
         #usrnm{
-            color: #303F9F  ;
+            color: #FF7043  ;
         }
 
     </style>
@@ -108,7 +108,7 @@
 
                 <div id="message">
                     <form action="" id="msgform">
-                        <p><input id="msg" autocomplete="off" /></p>
+                        <p><input id="msg"  autocomplete="off" /></p>
                         <p><button id="msgbtn" class="btn btn-primary">Send</button></p>
                     </form>
                 </div>
@@ -154,6 +154,7 @@
         socket.on('chat message', (data) => {
             //console.log(data.msg);
             var msgdiv = document.getElementById("messages");
+            //console.log(socket);
             msgdiv.innerHTML = msgdiv.innerHTML + '<div class="well well-sm" id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : ' +  data.msg + '</div>';
             //$('#messages').append($('<li>').text(msg.user));
             //$('#messages').append(text(msg.msg));

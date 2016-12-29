@@ -26,6 +26,7 @@ io.on('connection', function(socket) {
 
     // server code to handle the new user
     socket.on('user', function(data) {
+        //console.log(socket);
         //console.log("new user: ", data);
         // check if the data is already there
         if (users.users.indexOf(data) > -1) {
