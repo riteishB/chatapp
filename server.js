@@ -37,7 +37,8 @@ io.on('connection', function(socket) {
             users.users.push(socket.user);
         }
         console.log("Users Connected: ", users.users);
-        io.emit('myuser', socket.user);
+        //io.emit('myuser', socket.user);
+        socket.send(socket.user);
         getuser();
     });
 
@@ -64,6 +65,6 @@ io.on('connection', function(socket) {
 
 
 // make the http server listen in port 3000
-http.listen(process.env.PORT || 3200,'10.0.0.11' ,() => {
+http.listen(process.env.PORT || 3200,() => {
     console.log('Listening for connection..');
 });

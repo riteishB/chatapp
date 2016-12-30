@@ -67,6 +67,12 @@
             color: #FF7043  ;
         }
 
+        #welcome{
+            font-size: 20px;
+            font-family: consolas;
+
+        }
+
     </style>
 
 
@@ -78,19 +84,6 @@
     </div>
 
     <div class="container-fluid">
-        <!--  <form>
-            <div class="form-group">
-                <div class="col-md-6">
-                    <label for="loginName"> Username </label>
-                </div>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" id="loginName" />
-                </div>
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-primary"> Login </button>
-                </div>
-            </div>
-        </form> -->
         <div id="login">
             <h3> Please provide an username to join the chat </h3>
             <hr>
@@ -115,8 +108,9 @@
             </div>
 
             <div class="col-md-4" id="onlinediv">
+                <span id="welcome"> </span>
                 <div id="titlebar"> 
-                    <h1> Online Users </h1>
+                    <h1> Online Users <span id="onlinecount" class="badge"> </span></h1>
                 </div>
                 <div class="list-group" id="users"> 
                 </div>
@@ -149,19 +143,23 @@
             // clear the message variable once message has been sent
             $('#msg').val('');
             return false;
-        });
+        });     
 
         socket.on('chat message', (data) => {
-            //console.log(data.msg);
-            var msgdiv = document.getElementById("messages");
-            //console.log(socket);
-            msgdiv.innerHTML = msgdiv.innerHTML + '<div class="well well-sm" id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : ' +  data.msg + '</div>';
-            //$('#messages').append($('<li>').text(msg.user));
-            //$('#messages').append(text(msg.msg));
-            //var messdiv = document.getElementById("msgdiv");
-            $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
-            //messdiv.scrollTop =  messdiv.scrollHeight;      
+                //console.log(data.msg);
+                var msgdiv = document.getElementById("messages");
+                //console.log(socket);
+                //$('#msgwell').css('background','red');
+                msgdiv.innerHTML = msgdiv.innerHTML + '<div class="well well-sm" id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : ' +  data.msg + '</div>';
+                $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
 
+                    
+        });
+
+        socket.on('message', (data) =>{
+            console.log(data);
+            var headDiv = document.getElementById('welcome');
+            headDiv.innerHTML = 'Welcome, <b> '+ data + '</b>';
         });
 
         socket.on('users', (users) => {
@@ -179,7 +177,14 @@
                 //$('#users').text(user);
                 div.innerHTML = div.innerHTML + '<b>' + user + '<br>';
             }
+            var onCount = document.getElementById('onlinecount');
+            onCount.innerHTML = str.length;
+
         });
+
+
+
+
 
     </script>
 
