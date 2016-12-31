@@ -21,13 +21,14 @@
       color: #e0f7fa;
       padding-top: 30px;
   }
-  
-  #msgwell {
+  /*#msgwell {
       background: red;
-      width: 150px;
+      width: 300px;
       overflow-x: wrap;
       color: white;
-  }
+      border-radius: 20px;
+      padding: 10px;
+  }*/
   
   #titlebar {
       height: 40px;
