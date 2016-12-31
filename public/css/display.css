@@ -41,6 +41,7 @@
       background: #1E88E5;
       color: white;
       padding-left: 10px;
+      width: 300px;
   }
   
   #users {
@@ -59,4 +60,8 @@
       font-size: 14px;
       font-family: consolas;
       font-weight: bold;
+  }
+  
+  #onlinediv {
+      width: 350px;
   }

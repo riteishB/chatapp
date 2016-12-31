@@ -22,6 +22,8 @@
       return false;
   });
 
+  // if there is a duplicate user, client side will 
+  // make the user input a new username
   socket.on('dup user', (data) => {
       alertdiv = document.getElementById("usrname");
       alertdiv.innerHTML = '<div class="alert alert-danger">' + data + '</div>'
