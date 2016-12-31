@@ -41,6 +41,7 @@ io.on('connection', function(socket) {
         // check if the data is already there
         if (users.users.indexOf(data) > -1) {
             console.log("The username is already taken!");
+            return false;
         } else {
             socket.user = data;
             console.log("User logged in :", socket.user);

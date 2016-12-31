@@ -3,7 +3,6 @@
   $('#message').hide();
   $('#onlinediv').hide();
   var socket = io();
-
   // once the user presses the button
   $('#signin').on('click touchstart', function(e) {
       e.preventDefault();
@@ -41,7 +40,6 @@
       }
 
       $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
-
 
   });
 
