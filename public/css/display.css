@@ -1,0 +1,54 @@
+  #msgbox {
+      margin-top: 5px;
+      width: 500px;
+      height: 500px;
+      overflow-y: scroll;
+      overflow-x: wrap;
+  }
+  
+  #message input {
+      height: 50px;
+      width: 400px;
+  }
+  
+  #messages p {
+      font-size: 20px;
+  }
+  
+  #header {
+      height: 100px;
+      background: #26c6da;
+      color: #e0f7fa;
+      padding-top: 30px;
+  }
+  
+  #msgwell {
+      background: red;
+      width: 150px;
+      overflow-x: wrap;
+      color: white;
+  }
+  
+  #titlebar {
+      height: 40px;
+      background: #1E88E5;
+      color: white;
+      padding-left: 10px;
+  }
+  
+  #users {
+      color: green;
+      font-size: 14px;
+      height: 400px;
+      overflow-y: scroll;
+      padding: 5px;
+  }
+  
+  #usrnm {
+      color: #FF7043;
+  }
+  
+  #welcome {
+      font-size: 20px;
+      font-family: consolas;
+  }

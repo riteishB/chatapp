@@ -15,68 +15,7 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-
-
-    <style>
-
-        #msgbox {
-            margin-top:5px;
-            width: 500px;
-            height: 500px;
-            overflow-y: scroll;
-            overflow-x: wrap;
-        }
-
-        #message input {
-            height: 50px;
-            width: 400px;
-        }
-
-        #messages p{
-            font-size: 20px;
-        }
-
-        #header{
-            height:100px;
-            background: #26c6da;
-            color:#e0f7fa;  
-            padding-top: 30px;
-        }   
-        
-        #msgwell{
-            background: red;
-            width: 150px;
-            overflow-x: wrap;
-            color: white;
-        }
-
-        #titlebar{
-            height:40px;
-            background: #1E88E5;
-            color: white;
-            padding-left: 10px;
-        }
-
-        #users{
-            color:green;
-            font-size: 14px;
-            height:400px;
-            overflow-y: scroll;
-            padding: 5px;  
-        }
-
-        #usrnm{
-            color: #FF7043  ;
-        }
-
-        #welcome{
-            font-size: 20px;
-            font-family: consolas;
-
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="/display.css">
 
 </head>
 
@@ -103,7 +42,7 @@
 
                 <div id="message">
                     <form action="" id="msgform">
-                        <p><input id="msg"  autocomplete="off" /></p>
+                        <p><input id="msg" autocomplete="off" /></p>
                         <p><button id="msgbtn" class="btn btn-primary">Send</button></p>
                     </form>
                 </div>
@@ -111,85 +50,15 @@
 
             <div class="col-md-4" id="onlinediv">
                 <span id="welcome"> </span>
-                <div id="titlebar"> 
+                <div id="titlebar">
                     <h1> Online Users <span id="onlinecount" class="badge"> </span></h1>
                 </div>
-                <div class="list-group" id="users"> 
+                <div class="list-group" id="users">
                 </div>
             </div>
         </div>
 
     </div>
-
-    <script>
-        // hidden elemets will be reveled once the user signs in 
-        $('#msgbox').hide();
-        $('#message').hide();
-        $('#onlinediv').hide();
-        var socket = io();
-
-        // once the user presses the button
-        $('#signin').on('click touchstart', function(e) {
-            e.preventDefault();
-            // emit the user name to the server
-            socket.emit('user', $('#username').val());
-            $('#username').val('');
-            return false;
-        });
-
-        // when the user selects to send the message
-        $('#msgbtn').on('click touchstart', function(e) {
-            e.preventDefault();
-            // emit the message the user is sending 
-            socket.emit('chat message', $('#msg').val());
-            // clear the message variable once message has been sent
-            $('#msg').val('');
-            return false;
-        });     
-
-        socket.on('chat message', (data) => {
-                //console.log(data.msg);
-                var msgdiv = document.getElementById("messages");
-                //console.log(socket);
-                //$('#msgwell').css('background','red');
-                msgdiv.innerHTML = msgdiv.innerHTML + '<p id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : ' +  data.msg + '</p>';
-                $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
-
-                    
-        });
-
-        socket.on('message', (data) =>{
-            console.log(data);
-            var headDiv = document.getElementById('welcome');
-            headDiv.innerHTML = 'Welcome, <b> '+ data + '</b>';
-        });
-
-        socket.on('users', (users) => {
-            $('#login').hide();
-            $('#msgbox').show();
-            $('#message').show();
-            $('#onlinediv').show();
-            var div = document.getElementById('users');
-            div.innerHTML = '';
-            var str = users.users;
-            console.log(str);
-            for (var i = 0; i < str.length; i++) {
-                var user = str[i].toString();
-                //console.log(user);
-                //$('#users').text(user);
-                div.innerHTML = div.innerHTML + '<b>' + user + '<br>';
-            }
-            var onCount = document.getElementById('onlinecount');
-            onCount.innerHTML = str.length;
-
-        });
-
-
-
-
-
-    </script>
-
-
+    <script type="text/javascript" src="display.js"></script>
 
 </html>

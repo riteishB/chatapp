@@ -18,6 +18,16 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
 
+// enable path for the js file
+app.get('/display.js', (req, res) => {
+    res.sendFile(__dirname + '/public/js/display.js');
+});
+
+// link for the css file
+app.get('/display.css', (req, res) => {
+    res.sendfile(__dirname + '/public/css/display.css');
+});
+
 // on the connection made to the server
 io.on('connection', function(socket) {
     usercount++;
@@ -45,26 +55,26 @@ io.on('connection', function(socket) {
     // server code to handle the message sent by the user
     socket.on('chat message', function(msg) {
         //console.log('message: ' + msg);
-        io.emit('chat message', {msg: msg, user: socket.user});
+        io.emit('chat message', { msg: msg, user: socket.user });
     });
 
     // disconnect the user when the thing is out
     socket.on('disconnect', function() {
         usercount--;
-        users.users.splice(users.users.indexOf(socket.user),1);
+        users.users.splice(users.users.indexOf(socket.user), 1);
         console.log("User disconnected : ", socket.user);
-        connections.splice(connections.indexOf(socket),1);
+        connections.splice(connections.indexOf(socket), 1);
         console.log('user disconnected, total users online : ', connections.length);
         getuser();
     });
 
-    function getuser(){
+    function getuser() {
         io.emit('users', users);
     }
 });
 
 
 // make the http server listen in port 3000
-http.listen(process.env.PORT || 3200,() => {
+http.listen(process.env.PORT || 3200, () => {
     console.log('Listening for connection..');
 });
