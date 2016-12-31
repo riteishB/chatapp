@@ -22,6 +22,12 @@
       return false;
   });
 
+  socket.on('dup user', (data) => {
+      alertdiv = document.getElementById("usrname");
+      alertdiv.innerHTML = '<div class="alert alert-danger">' + data + '</div>'
+      return false;
+  });
+
   socket.on('chat message', (data) => {
       //console.log(data.msg);
       var msgdiv = document.getElementById("messages");

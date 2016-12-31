@@ -41,6 +41,7 @@ io.on('connection', function(socket) {
         // check if the data is already there
         if (users.users.indexOf(data) > -1) {
             console.log("The username is already taken!");
+            io.emit('dup user', 'Username already taken, please enter a different one');
             return false;
         } else {
             socket.user = data;
