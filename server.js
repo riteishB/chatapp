@@ -54,8 +54,9 @@ io.on('connection', function(socket) {
 
     // server code to handle the message sent by the user
     socket.on('chat message', function(msg) {
-        //console.log('message: ' + msg);
+        // if the message is empty, then dont post it
         io.emit('chat message', { msg: msg, user: socket.user });
+
     });
 
     // disconnect the user when the thing is out

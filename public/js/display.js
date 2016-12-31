@@ -28,7 +28,10 @@
       var msgdiv = document.getElementById("messages");
       //console.log(socket);
       //$('#msgwell').css('background','red');
-
+      if (data.msg.length == " ") {
+          alert("Cannot send empty message");
+          return false;
+      }
       // checking if the msg contains a link
       if (data.msg.includes('http://') || data.msg.includes('https://')) {
           console.log(data.msg);
