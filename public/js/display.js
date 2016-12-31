@@ -28,7 +28,15 @@
       var msgdiv = document.getElementById("messages");
       //console.log(socket);
       //$('#msgwell').css('background','red');
-      msgdiv.innerHTML = msgdiv.innerHTML + '<p id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : ' + data.msg + '</p>';
+
+      // checking if the msg contains a link
+      if (data.msg.includes('http://') || data.msg.includes('https://')) {
+          console.log(data.msg);
+          msgdiv.innerHTML = msgdiv.innerHTML + '<p id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : <a href="' + data.msg + '" target="_blank">' + data.msg + '</a></p>';
+      } else {
+          msgdiv.innerHTML = msgdiv.innerHTML + '<p id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : ' + data.msg + '</p>';
+      }
+
       $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
 
 
