@@ -15,6 +15,12 @@
       font-size: 20px;
   }
   
+  #msgheader {
+      height: 30px;
+      background: #2c3e50;
+      color: #ecf0f1;
+  }
+  
   #header {
       height: 100px;
       background: #26c6da;
@@ -46,10 +52,11 @@
   }
   
   #usrnm {
-      color: #FF7043;
+      color: #512DA8;
   }
   
   #welcome {
-      font-size: 20px;
+      font-size: 14px;
       font-family: consolas;
+      font-weight: bold;
   }
