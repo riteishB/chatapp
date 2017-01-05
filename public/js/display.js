@@ -2,6 +2,7 @@
   $('#msgbox').hide();
   $('#message').hide();
   $('#onlinediv').hide();
+  $('#extradiv').hide();
   var socket = io();
   // once the user presses the button
   $('#signin').on('click touchstart', function(e) {
@@ -62,6 +63,7 @@
       $('#msgbox').show();
       $('#message').show();
       $('#onlinediv').show();
+      $('#extradiv').show();
       var div = document.getElementById('users');
       div.innerHTML = '';
       var str = users.users;
