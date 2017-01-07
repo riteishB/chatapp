@@ -46,10 +46,11 @@
   
   #users {
       color: green;
-      font-size: 14px;
+      font-size: 25px;
       height: 400px;
       overflow-y: scroll;
       padding: 5px;
+      text-align: center;
   }
   
   #usrnm {
@@ -64,4 +65,18 @@
   
   #onlinediv {
       width: 350px;
+  }
+
+  #login{
+    width:400px;
+    height:200px;
+    background: #0288D1;
+    text-align: center;
+    margin-top: 200px;
+    color: white;
+    margin-left:600px;
+  }
+
+  #login #username{
+    color: black;
   }

@@ -25,7 +25,7 @@ app.get('/display.js', (req, res) => {
 
 // link for the css file
 app.get('/display.css', (req, res) => {
-    res.sendfile(__dirname + '/public/css/display.css');
+    res.sendFile(__dirname + '/public/css/display.css');
 });
 
 // on the connection made to the server
@@ -63,13 +63,23 @@ io.on('connection', function(socket) {
 
     // disconnect the user when the thing is out
     socket.on('disconnect', function() {
+        disconnect();
+    });
+
+    // listen to logout button event and do the same as disconnect
+    socket.on('logout', () =>{
+        disconnect();
+    });
+
+    function disconnect(){
         usercount--;
         users.users.splice(users.users.indexOf(socket.user), 1);
         console.log("User disconnected : ", socket.user);
         connections.splice(connections.indexOf(socket), 1);
         console.log('user disconnected, total users online : ', connections.length);
         getuser();
-    });
+        io.emit('disconnect');
+    }
 
     function getuser() {
         io.emit('users', users);

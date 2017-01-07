@@ -23,6 +23,15 @@
       return false;
   });
 
+  // when the user clicks on logoff
+
+  $('#signout').on('click touchstart', function (e){
+      e.preventDefault();
+      // emit disconnect
+      //console.log('Clicked Disconnect');
+      socket.emit('logout');
+  });
+
   // if there is a duplicate user, client side will 
   // make the user input a new username
   socket.on('dup user', (data) => {
@@ -42,7 +51,7 @@
       }
       // checking if the msg contains a link
       if (data.msg.includes('http://') || data.msg.includes('https://')) {
-          console.log(data.msg);
+          //console.log(data.msg);
           msgdiv.innerHTML = msgdiv.innerHTML + '<p id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : <a href="' + data.msg + '" target="_blank">' + data.msg + '</a></p>';
       } else {
           msgdiv.innerHTML = msgdiv.innerHTML + '<p id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : ' + data.msg + '</p>';
@@ -53,7 +62,7 @@
   });
 
   socket.on('message', (data) => {
-      console.log(data);
+      //console.log(data);
       var headDiv = document.getElementById('welcome');
       headDiv.innerHTML = 'Welcome, <b> ' + data + '</b>';
   });
@@ -67,7 +76,7 @@
       var div = document.getElementById('users');
       div.innerHTML = '';
       var str = users.users;
-      console.log(str);
+      //console.log(str);
       for (var i = 0; i < str.length; i++) {
           var user = str[i].toString();
           //console.log(user);
@@ -78,3 +87,9 @@
       onCount.innerHTML = str.length;
 
   });
+
+  socket.on('disconnect',() =>{
+      console.log("User Disconnected!");  
+      window.location='/';
+  });
+  
