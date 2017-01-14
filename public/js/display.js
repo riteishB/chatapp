@@ -55,7 +55,7 @@
           msgdiv.innerHTML = msgdiv.innerHTML + '<p id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : ' + data.msg + '</p>';
       }
 
-      $('#msgbox').scrollTop($('#msgbox')[0].scrollHeight);
+      $('#messages').scrollTop($('#messages')[0].scrollHeight);
 
   });
 
