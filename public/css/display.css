@@ -7,13 +7,11 @@
   #message input {
       height: 50px;
       width: 800px;
-      margin-left: 450px;
   }
   
   #msgbtn{
     background: black;
     color: white;
-    margin-left: 450px;
   }
 
   #messages p {
