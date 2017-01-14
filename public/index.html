@@ -41,11 +41,25 @@
                 <p><button id="signin" class="btn btn-primary"> Login </button></p>
             </form>
         </div>
-        <div class="row">
+        <div class="row" id="chatwindow">
+            <div id="bar">
+                <span id="welcome"> </span>
+            </div>
+
+            <div class="col-md-4" id="onlinediv">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3> Online Users <span id="onlinecount" class="badge"> </span></h3>
+                    </div>
+                </div>
+                <div class="list-group" id="users">
+                </div>
+            </div>
+
             <div class="col-md-6" id="msgdiv">
-                <div id="msgbox">
-                    <div id="msgheader">
-                        <span id="welcome"> </span>
+                <div class="panel panel-default" id="msgbox">
+                    <div class="panel-heading">
+                        <h3> Messages </h3>
                     </div>
                     <div id="messages"></div>
                 </div>
@@ -58,22 +72,12 @@
                 </div>
             </div>
 
-            <div class="col-md-4" id="onlinediv">
-                <div id="titlebar">
-                    <h1> Online Users <span id="onlinecount" class="badge"> </span></h1>  
+            <!-- <div class="panel panel-default" id="extradiv">
+                <div class="panel-heading">
+                    <h3> Useful Links </h3>
                 </div>
-                <div class="list-group" id="users">
-                </div>
-            </div>
-
-            <div class="col-md-2" id="extradiv">
-                <div id="titlebar">
-                    <h1>Info Center</h1>
-                </div>
-                <div id="infocard">
-                    
-                </div>
-            </div>
+                
+            </div> -->
 
         </div>
 

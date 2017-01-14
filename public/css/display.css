@@ -1,6 +1,4 @@
   #msgbox {
-      margin-top: 5px;
-      width: 600px;
       height: 500px;
       overflow-y: scroll;
       overflow-x: wrap;
@@ -25,9 +23,9 @@
       height: 100px;
       background: #26c6da;
       color: #e0f7fa;
-      padding-top: 30px;
   }
-  /*#msgwell {
+  
+ /* #msgwell {
       background: red;
       width: 300px;
       overflow-x: wrap;
@@ -36,20 +34,19 @@
       padding: 10px;
   }*/
   
-  #titlebar {
+ /* #titlebar {
       height: 40px;
       background: #1E88E5;
       color: white;
       padding-left: 10px;
       width: 300px;
-  }
+  }*/
   
   #users {
-      color: green;
-      font-size: 25px;
-      height: 400px;
+      color: #2ecc71;
+      font-size: 20px;
+      height: 500px;
       overflow-y: scroll;
-      padding: 5px;
       text-align: center;
   }
   
@@ -58,21 +55,40 @@
   }
   
   #welcome {
-      font-size: 14px;
+      font-size: 20px;
       font-family: consolas;
       font-weight: bold;
+      margin-top:10px;
   }
   
-  #onlinediv {
+/*  #onlinediv {
       width: 350px;
-  }
+      border: solid;
+  }*/
 
   #login{
     text-align: center;
     margin-top: 200px;
-    margin-left:100px;
+    margin-left:50px;
   }
 
   #login #username{
     color: black;
+  }
+
+  #bar{
+    background: #2c3e50;
+    color: white;
+    height: 40px;
+  }
+  
+  #onlinecount{
+    background: white;
+    color: black;
+    font-size: 20px;
+  }
+
+  .panel > .panel-heading{
+    background: #3498db;
+    color: white;
   }
