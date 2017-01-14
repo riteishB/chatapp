@@ -3,6 +3,7 @@
   $('#message').hide();
   $('#onlinediv').hide();
   $('#extradiv').hide();
+  $('#signout').hide();
   var socket = io();
   // once the user presses the button
   $('#signin').on('click touchstart', function(e) {
@@ -73,6 +74,7 @@
       $('#message').show();
       $('#onlinediv').show();
       $('#extradiv').show();
+      $('#signout').show();
       var div = document.getElementById('users');
       div.innerHTML = '';
       var str = users.users;
@@ -86,10 +88,5 @@
       var onCount = document.getElementById('onlinecount');
       onCount.innerHTML = str.length;
 
-  });
-
-  socket.on('disconnect',() =>{
-      console.log("User Disconnected!");  
-      window.location='/';
   });
   

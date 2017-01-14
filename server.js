@@ -43,7 +43,13 @@ io.on('connection', function(socket) {
             console.log("The username is already taken!");
             io.emit('dup user', 'Username already taken, please enter a different one');
             return false;
-        } else {
+        } 
+        else if(data.length <= 0) {
+            console.log("Blank Username");
+            io.emit('dup user', 'Username cannot be Empty');
+            return false;
+        }
+        else{
             socket.user = data;
             console.log("User logged in :", socket.user);
             users.users.push(socket.user);
@@ -76,9 +82,9 @@ io.on('connection', function(socket) {
         users.users.splice(users.users.indexOf(socket.user), 1);
         console.log("User disconnected : ", socket.user);
         connections.splice(connections.indexOf(socket), 1);
-        console.log('user disconnected, total users online : ', connections.length);
+        console.log('user disconnected, total users online : ', connections.length);   
         getuser();
-        io.emit('disconnect');
+        socket.disconnect();
     }
 
     function getuser() {

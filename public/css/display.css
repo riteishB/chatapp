@@ -68,13 +68,9 @@
   }
 
   #login{
-    width:400px;
-    height:200px;
-    background: #0288D1;
     text-align: center;
     margin-top: 200px;
-    color: white;
-    margin-left:600px;
+    margin-left:100px;
   }
 
   #login #username{
