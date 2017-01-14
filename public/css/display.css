@@ -1,9 +1,17 @@
   #msgbox {
-      height: 600px;
-      overflow-y: scroll;
-      overflow-x: wrap;
+      height: 500px;
+  }
+
+  #messages{
+    height: 400px;
+    overflow-x: wrap;
+    overflow-y: scroll;
   }
   
+  #onlinediv{
+    height: 500px;
+  }
+
   #message input {
       height: 50px;
       width: 800px;
@@ -50,9 +58,9 @@
   #users {
       color: #2ecc71;
       font-size: 20px;
-      height: 500px;
       overflow-y: scroll;
       text-align: center;
+      height: 400px;
   }
   
   #usrnm {
