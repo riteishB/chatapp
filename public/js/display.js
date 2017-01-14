@@ -1,5 +1,6 @@
   // hidden elemets will be reveled once the user signs in 
   $('#chatwindow').hide()
+  $('#message').hide();
   var socket = io();
   // once the user presses the button
   $('#signin').on('click touchstart', function(e) {
@@ -68,6 +69,7 @@
       $('#login').hide();
       $('#header').hide();
       $('#chatwindow').show();
+      $('#message').show();
       var div = document.getElementById('users');
       div.innerHTML = '';
       var str = users.users;

@@ -1,14 +1,21 @@
   #msgbox {
-      height: 500px;
+      height: 600px;
       overflow-y: scroll;
       overflow-x: wrap;
   }
   
   #message input {
       height: 50px;
-      width: 600px;
+      width: 800px;
+      margin-left: 450px;
   }
   
+  #msgbtn{
+    background: black;
+    color: white;
+    margin-left: 450px;
+  }
+
   #messages p {
       font-size: 20px;
   }
@@ -24,7 +31,7 @@
       background: #26c6da;
       color: #e0f7fa;
   }
-  
+
  /* #msgwell {
       background: red;
       width: 300px;
@@ -91,4 +98,8 @@
   .panel > .panel-heading{
     background: #3498db;
     color: white;
+  }
+  
+  #extradiv{
+    height:500px;
   }

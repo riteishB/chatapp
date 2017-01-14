@@ -45,41 +45,45 @@
             <div id="bar">
                 <span id="welcome"> </span>
             </div>
-
-            <div class="col-md-4" id="onlinediv">
-                <div class="panel panel-default">
+    
+                <div class="col-md-3 panel panel-default">
                     <div class="panel-heading">
                         <h3> Online Users <span id="onlinecount" class="badge"> </span></h3>
                     </div>
+                    <div class="panel-body">
+                        <div class="list-group" id="users">
+                        </div>
+                    </div>
                 </div>
-                <div class="list-group" id="users">
-                </div>
-            </div>
-
-            <div class="col-md-6" id="msgdiv">
-                <div class="panel panel-default" id="msgbox">
+                
+                <div class="col-md-6 panel panel-default" id="msgbox">
                     <div class="panel-heading">
                         <h3> Messages </h3>
                     </div>
-                    <div id="messages"></div>
+                    <div class="panel-body">
+                        <div id="messages"></div>
+                    </div>
                 </div>
 
-                <div id="message">
-                    <form action="" id="msgform">
-                        <p><input id="msg" autocomplete="off" /></p>
-                        <p><button id="msgbtn" class="btn btn-primary">Send</button></p>
-                    </form> 
-                </div>
-            </div>
+                <div class="col-md-3 panel panel-default" id="extradiv">
+                    <div class="panel-heading">
+                        <h3> Chat Rooms </h3>
+                    </div>
 
-            <!-- <div class="panel panel-default" id="extradiv">
-                <div class="panel-heading">
-                    <h3> Useful Links </h3>
-                </div>
+                    <div class="panel-body">
+    
+                    </div>
                 
-            </div> -->
+                </div> 
 
         </div>
+
+                <div id="message">
+                        <form action="" id="msgform">
+                            <p><input id="msg" autocomplete="off" /></p>
+                            <p><button id="msgbtn" class="btn btn-primary">Send</button></p>
+                        </form> 
+                </div>
 
     </div>
     <script type="text/javascript" src="display.js"></script>
