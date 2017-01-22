@@ -20,10 +20,10 @@
 </head>
 
 <body>
-    
+
 
     <div class="container-fluid">
-        
+
         <div id="header">
             <div class="row">
                 <div class="col-md-8">
@@ -33,56 +33,56 @@
         </div>
 
         <div id="login">
-            <hr>
             <form action="" id="loginform">
                 <h2>Username</h2>
                 <p><input id="username" autocomplete="off" /></p>
-                <p id="usrname"></p><br>
                 <p><button id="signin" class="btn btn-primary"> Login </button></p>
             </form>
+            <br><br>
+            <p id="usrname"></p><br>
         </div>
         <div class="row" id="chatwindow">
             <div id="bar">
                 <span id="welcome"> </span>
             </div>
-    
-                <div class="col-md-3 panel panel-default" id="onlinediv">
-                    <div class="panel-heading">
-                        <h3> Online Users <span id="onlinecount" class="badge"> </span></h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="list-group" id="users">
-                        </div>
+
+            <div class="col-md-3 panel panel-default" id="onlinediv">
+                <div class="panel-heading">
+                    <h3> Online Users <span id="onlinecount" class="badge"> </span></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group" id="users">
                     </div>
                 </div>
-                
-                <div class="col-md-6 panel panel-default" id="msgbox">
-                    <div class="panel-heading">
-                        <h3> Messages </h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id="messages"></div>
-                    </div>
+            </div>
+
+            <div class="col-md-6 panel panel-default" id="msgbox">
+                <div class="panel-heading">
+                    <h3> Messages </h3>
+                </div>
+                <div class="panel-body">
+                    <div id="messages"></div>
+                </div>
+            </div>
+
+            <div class="col-md-3 panel panel-default" id="extradiv">
+                <div class="panel-heading">
+                    <h3> Chat Rooms </h3>
                 </div>
 
-                <div class="col-md-3 panel panel-default" id="extradiv">
-                    <div class="panel-heading">
-                        <h3> Chat Rooms </h3>
-                    </div>
+                <div class="panel-body">
 
-                    <div class="panel-body">
-    
-                    </div>
-                
-                </div> 
+                </div>
+
+            </div>
 
         </div>
-         <div id="message" class="row">
+        <div id="message" class="row">
             <div class="col-md-8">
                 <form action="" id="msgform">
                     <p><input id="msg" autocomplete="off" /></p>
                     <p><button id="msgbtn" class="btn btn-primary">Send</button></p>
-                </form> 
+                </form>
             </div>
         </div>
 

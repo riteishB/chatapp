@@ -1,27 +1,27 @@
   #msgbox {
       height: 500px;
   }
-
-  #messages{
-    height: 400px;
-    overflow-x: wrap;
-    overflow-y: scroll;
+  
+  #messages {
+      height: 400px;
+      overflow-x: wrap;
+      overflow-y: scroll;
   }
   
-  #onlinediv{
-    height: 500px;
+  #onlinediv {
+      height: 500px;
   }
-
+  
   #message input {
       height: 50px;
       width: 800px;
   }
   
-  #msgbtn{
-    background: black;
-    color: white;
+  #msgbtn {
+      background: black;
+      color: white;
   }
-
+  
   #messages p {
       font-size: 20px;
   }
@@ -33,21 +33,21 @@
   }
   
   #header {
-      height: 100px;
-      background: #26c6da;
+      height: 60px;
+      background: #2c3e50;
       color: #e0f7fa;
   }
-
- /* #msgwell {
-      background: red;
-      width: 300px;
-      overflow-x: wrap;
-      color: white;
-      border-radius: 20px;
-      padding: 10px;
-  }*/
   
- /* #titlebar {
+  #msgwell {
+      background: #1976D2;
+      overflow-x: wrap;
+      color: #E0E0E0;
+      border-radius: 20px;
+      padding: 3px;
+      max-width: 400px;
+      display: inline-block;
+  }
+  /* #titlebar {
       height: 40px;
       background: #1E88E5;
       color: white;
@@ -64,48 +64,55 @@
   }
   
   #usrnm {
-      color: #512DA8;
+      color: #FFEB3B;
   }
   
   #welcome {
       font-size: 20px;
       font-family: consolas;
       font-weight: bold;
-      margin-top:10px;
+      margin-top: 10px;
   }
-  
-/*  #onlinediv {
+  /*  #onlinediv {
       width: 350px;
       border: solid;
   }*/
-
-  #login{
-    text-align: center;
-    margin-top: 200px;
-    margin-left:50px;
-  }
-
-  #login #username{
-    color: black;
-  }
-
-  #bar{
-    background: #2c3e50;
-    color: white;
-    height: 40px;
+  
+  #login {
+      text-align: center;
+      margin-top: 200px;
+      margin-left: 300px;
+      width: 400px;
   }
   
-  #onlinecount{
-    background: white;
-    color: black;
-    font-size: 20px;
-  }
-
-  .panel > .panel-heading{
-    background: #3498db;
-    color: white;
+  #login #username {
+      color: black;
   }
   
-  #extradiv{
-    height:500px;
+  #bar {
+      background: #2c3e50;
+      color: white;
+      height: 40px;
+  }
+  
+  #onlinecount {
+      background: white;
+      color: black;
+      font-size: 20px;
+  }
+  
+  .panel>.panel-heading {
+      background: #3498db;
+      color: white;
+  }
+  
+  #extradiv {
+      height: 500px;
+  }
+  
+  #loginform {
+      height: 160px;
+      background: #007ee5;
+      color: white;
+      padding-top: 7px;
   }

@@ -23,7 +23,7 @@
 
   // when the user clicks on logoff
 
-  $('#signout').on('click touchstart', function (e){
+  $('#signout').on('click touchstart', function(e) {
       e.preventDefault();
       // emit disconnect
       //console.log('Clicked Disconnect');
@@ -50,9 +50,9 @@
       // checking if the msg contains a link
       if (data.msg.includes('http://') || data.msg.includes('https://')) {
           //console.log(data.msg);
-          msgdiv.innerHTML = msgdiv.innerHTML + '<p id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : <a href="' + data.msg + '" target="_blank">' + data.msg + '</a></p>';
+          msgdiv.innerHTML = msgdiv.innerHTML + '<p id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : <a href="' + data.msg + '" target="_blank">' + data.msg + '</a></p><br>';
       } else {
-          msgdiv.innerHTML = msgdiv.innerHTML + '<p id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : ' + data.msg + '</p>';
+          msgdiv.innerHTML = msgdiv.innerHTML + '<p id="msgwell"><strong><span id="usrnm">' + data.user + '</span></strong>' + ' : ' + data.msg + '</p><br>';
       }
 
       $('#messages').scrollTop($('#messages')[0].scrollHeight);
@@ -84,4 +84,3 @@
       onCount.innerHTML = str.length;
 
   });
-  
