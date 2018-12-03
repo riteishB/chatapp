@@ -6,3 +6,4 @@ chat application using node
  - new users should see old chats
  - create account
  - save message history
+ - chatrooms
