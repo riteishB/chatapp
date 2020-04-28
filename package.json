@@ -9,6 +9,7 @@
   "author": "thebriteish",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^13.13.4",
     "express": "^4.14.0",
     "socket.io": "^1.7.2"
   }
