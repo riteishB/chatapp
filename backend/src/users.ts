@@ -27,4 +27,8 @@ export const getUser = (id: string) => {
     return users.find((usr) => usr.id === id)
 }
 
-export const getConnectedUsers = (room: string) => {}
+export const getConnectedUsersForRoom = (room: string) => {
+    return users.filter((usr) => {
+        usr.room === room
+    })
+}

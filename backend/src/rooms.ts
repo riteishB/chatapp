@@ -1,7 +1,13 @@
-const rooms = []
+const rooms: string[] = []
 
-export const addRoom = () => {}
+export const addRoom = (room: string) => {
+    // if not add to the list
+    if (rooms.includes(room)) {
+        return Error('Room already exists')
+    }
+    rooms.push(room)
+}
 
-export const getRooms = () => {}
-
-export const getConnectedUsers = (room: string) => {}
+export const getRooms = () => {
+    return rooms
+}
