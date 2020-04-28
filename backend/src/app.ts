@@ -1,11 +1,11 @@
 import express from 'express'
-// import io from "socket.io";
+import io from 'socket.io'
 import * as http from 'http'
 import cors from 'cors'
 
 const app = express()
 const server = new http.Server(app)
-// const socket = io(server);
+const socketio = io(server)
 const PORT = process.env.PORT || 3200
 
 // CORS enabled
@@ -16,6 +16,14 @@ app.get('/healthcheck', ({ res }) => {
     res?.json({
         status: '200',
         msg: 'Server is running',
+    })
+})
+
+socketio.on('connection', (socket) => {
+    console.log('A user connected')
+
+    socket.on('user', (data) => {
+        console.log(data)
     })
 })
 
