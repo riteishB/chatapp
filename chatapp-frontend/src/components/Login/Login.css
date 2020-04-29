@@ -1,0 +1,25 @@
+.loginForm {
+    height: 200px;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-direction: column;
+    max-width: 60%;
+    min-width: 40%;
+}
+
+.loginContainer {
+    height: 98vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loginFormData {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
