@@ -19,12 +19,9 @@ export default function App() {
 
     useEffect(() => {
         const socket = socketIOClient(SERVER_ENDPOINT)
-        socket.on('rooms', rooms => {
-            console.log(rooms)
-        })
 
         socket.on('message', message => {
-            console.log(message)
+            setMessages([...messages, message])
         })
 
         socket.emit('join', {
@@ -49,7 +46,12 @@ export default function App() {
                 )}
                 exact
             />
-            <Route to="/chat" component={Chat} />
+            <Route
+                to="/chat"
+                component={() => (
+                    <Chat user={user} room={room} messages={messages} />
+                )}
+            />
         </Switch>
     )
 }

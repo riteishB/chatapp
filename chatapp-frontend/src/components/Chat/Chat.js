@@ -6,8 +6,9 @@ import OnlineUsers from '../OnlineUsers/OnlineUsers'
 import './Chat.css'
 
 export default function Chat(props) {
-    const user = props.location.state ? props.location.state.user : undefined
-    const room = props.location.state ? props.location.state.room : undefined
+    const user = props.user
+    const room = props.room
+    const messages = props.messages
     if (user == null && room == null) {
         return <Redirect to="/" />
     } else {
@@ -16,7 +17,7 @@ export default function Chat(props) {
                 <div className="chat-header">
                     {user} {room}
                 </div>
-                <Messages />
+                <Messages messages={messages} />
                 <MessageInput />
                 <OnlineUsers />
             </div>

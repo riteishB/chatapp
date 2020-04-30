@@ -1,0 +1,6 @@
+.messagesContainer {
+    background: white;
+    height: 100%;
+    display: flex;
+    padding: 2rem;
+}

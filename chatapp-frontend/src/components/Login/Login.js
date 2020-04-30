@@ -21,10 +21,7 @@ export default function Login(props) {
         if (room && user) {
             props.setRoom(room)
             props.setUser(user)
-            history.push('/chat', {
-                user: user,
-                room: room,
-            })
+            history.push('/chat')
         }
     }
 

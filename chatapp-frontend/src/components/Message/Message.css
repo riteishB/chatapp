@@ -1,0 +1,24 @@
+.message {
+    background: red;
+    height: 2rem;
+    border: 2px solid red;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    align-items: center;
+    border-radius: 15%;
+    color: white;
+    max-width: 30%;
+    flex-direction: column;
+}
+
+.messageUser {
+    border-bottom: 2px solid gray;
+    align-self: flex-start;
+    margin-left: 1rem;
+}
+
+.msgInfo {
+    align-self: flex-start;
+    margin-left: 1rem;
+}
