@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Paper, Button, TextField } from '@material-ui/core'
 import './Login.css'
 
-export default function Login() {
-    const [user, setUser] = useState('')
-    const [room, setRoom] = useState('')
+export default function Login(props) {
+    const [user, setUser] = useState()
+    const [room, setRoom] = useState()
+
+    const history = useHistory()
 
     const handleChange = event => {
         if (event.target.id === 'userName') {
@@ -14,6 +16,18 @@ export default function Login() {
             setRoom(event.target.value)
         }
     }
+
+    const joinHandler = () => {
+        if (room && user) {
+            props.setRoom(room)
+            props.setUser(user)
+            history.push('/chat', {
+                user: user,
+                room: room,
+            })
+        }
+    }
+
     return (
         <div className="loginContainer">
             <Paper elevation={3} rounded="true" className="loginForm">
@@ -34,16 +48,13 @@ export default function Login() {
                 </div>
 
                 <div className="loginFormButton">
-                    <Link
-                        to={{
-                            state: { user: user, room: room },
-                            pathname: '/chat',
-                        }}
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={joinHandler}
                     >
-                        <Button variant="contained" color="primary">
-                            Join room
-                        </Button>
-                    </Link>
+                        Join room
+                    </Button>
                 </div>
             </Paper>
         </div>

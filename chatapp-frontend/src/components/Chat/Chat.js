@@ -2,23 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 
 export default function Chat(props) {
-    const [user, setUser] = useState('')
-    const [room, setRoom] = useState('')
-    const [error, setError] = useState()
-
-    useEffect(
-        () => {
-            if (props.location.state.user && props.location.state.room) {
-                setUser(props.location.state.user)
-                setRoom(props.location.state.room)
-            } else {
-                setError('Not signed in ')
-            }
-        },
-        [room, user]
-    )
-
-    if (error) {
+    const user = props.location.state ? props.location.state.user : undefined
+    const room = props.location.state ? props.location.state.room : undefined
+    if (user == null && room == null) {
         return <Redirect to="/" />
     } else {
         return (
