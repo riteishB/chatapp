@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Message from '../Message/Message'
-import { Container, Button, TextField } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import './Messages.css'
+import { socket } from '../../App'
 
-export default function Messages(props) {
+export default function Messages() {
+    const [messages, setMessages] = useState([])
+
+    socket.on('message', message => {
+        setMessages([...messages, message])
+    })
+
     return (
         <Container className="messagesContainer">
-            {props.messages.map((message, index) => {
+            {messages.map((message, index) => {
                 return <Message message={message} key={index} />
             })}
         </Container>

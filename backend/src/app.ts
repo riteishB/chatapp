@@ -2,7 +2,6 @@ import express from 'express'
 import io from 'socket.io'
 import * as http from 'http'
 import cors from 'cors'
-import { getRooms } from './rooms'
 
 const app = express()
 const server = new http.Server(app)
@@ -22,15 +21,17 @@ app.get('/healthcheck', ({ res }) => {
 
 socketio.on('connection', (socket) => {
     console.log('A user connected')
-    socket.emit('rooms', getRooms())
 
     socket.on('join', (userData) => {
         console.log(userData)
     })
 
-    socket.emit('message', {
-        user: 'Test',
-        message: 'Demo message',
+    socket.on('userMsg', (data) => {
+        console.log(data)
+        socketio.emit('message', {
+            user: data.user,
+            message: data.message,
+        })
     })
 })
 

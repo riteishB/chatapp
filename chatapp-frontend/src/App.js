@@ -6,51 +6,32 @@ import Login from './components/Login/Login'
 import Chat from './components/Chat/Chat'
 
 const SERVER_ENDPOINT = 'http://localhost:3200'
+export const socket = socketIOClient(SERVER_ENDPOINT)
 
 export default function App() {
     const [user, setUser] = useState()
     const [room, setRoom] = useState()
-    const [messages, setMessages] = useState([])
-    const [redirect, setRedirect] = useState(false)
 
-    const joinHandler = () => {
-        setRedirect(true)
-    }
-
-    useEffect(() => {
-        const socket = socketIOClient(SERVER_ENDPOINT)
-
-        socket.on('message', message => {
-            setMessages([...messages, message])
-        })
-
-        socket.emit('join', {
-            user: 'test',
-            room: 'test',
-        })
-        // get list of all the rooms that are present
-        // get the user to set username and room to join
-        // set the data
-    }, [])
+    useEffect(
+        () => {
+            socket.emit('join', {
+                user: user,
+                room: room,
+            })
+        },
+        [user, room]
+    )
 
     return (
         <Switch>
             <Route
                 path="/"
-                component={() => (
-                    <Login
-                        setUser={setUser}
-                        setRoom={setRoom}
-                        joinHandler={joinHandler}
-                    />
-                )}
+                component={() => <Login setUser={setUser} setRoom={setRoom} />}
                 exact
             />
             <Route
                 to="/chat"
-                component={() => (
-                    <Chat user={user} room={room} messages={messages} />
-                )}
+                component={() => <Chat user={user} room={room} />}
             />
         </Switch>
     )

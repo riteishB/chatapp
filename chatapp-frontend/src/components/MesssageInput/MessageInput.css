@@ -1,0 +1,8 @@
+.msgForm {
+    width: 100%;
+    display: flex;
+}
+
+.msgForm > .MuiTextField-root {
+    width: 100%;
+}
