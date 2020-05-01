@@ -27,10 +27,9 @@ export default function MessageInput(props) {
         <form className="msgForm">
             <TextField
                 id="user-message"
-                label="Type a msg.."
-                variant="outlined"
                 onChange={msgHandler}
                 value={msg}
+                placeholder="Type your msg..."
             />
             <Button variant="outlined" color="primary" onClick={sendHandler}>
                 <SendIcon />

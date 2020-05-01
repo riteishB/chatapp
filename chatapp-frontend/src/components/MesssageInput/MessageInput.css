@@ -6,3 +6,10 @@
 .msgForm > .MuiTextField-root {
     width: 100%;
 }
+
+.msgForm input {
+    background: #aee1f9;
+    border: 1px solid #aee1f9;
+    height: 100%;
+    padding: 1rem;
+}
