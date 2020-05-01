@@ -2,6 +2,7 @@ import express from 'express'
 import io from 'socket.io'
 import * as http from 'http'
 import cors from 'cors'
+import { addUsers, removeUser, getConnectedUsersForRoom } from './users'
 
 const app = express()
 const server = new http.Server(app)
@@ -20,17 +21,31 @@ app.get('/healthcheck', ({ res }) => {
 })
 
 socketio.on('connection', (socket) => {
-    console.log('A user connected')
+    socket.on('joinRoom', (userData) => {
+        if (userData.user) {
+            const id = socket.id
+            addUsers({
+                name: userData.user,
+                room: userData.room,
+                id: id,
+            })
+            socket.join(userData.room)
 
-    socket.on('join', (userData) => {
-        console.log(userData)
+            socketio
+                .to(userData.room)
+                .emit('usersList', getConnectedUsersForRoom(userData.room))
+        }
     })
 
     socket.on('userMsg', (data) => {
-        socketio.emit('message', {
+        socketio.to(data.room).emit('message', {
             user: data.user,
             message: data.message,
         })
+    })
+
+    socket.on('disconnect', () => {
+        removeUser(socket.id)
     })
 })
 

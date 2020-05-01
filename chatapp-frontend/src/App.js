@@ -14,7 +14,7 @@ export default function App() {
 
     useEffect(
         () => {
-            socket.emit('join', {
+            socket.emit('joinRoom', {
                 user: user,
                 room: room,
             })

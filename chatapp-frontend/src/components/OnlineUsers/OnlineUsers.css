@@ -1,0 +1,28 @@
+.MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+    width: 30%;
+    height: 80vh;
+    margin-top: 0.5rem;
+}
+
+.drawerHeader {
+    height: 2rem;
+    padding: 1rem;
+    background: #03a9f4;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.onlineUsers {
+    height: 90%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.onlineUser {
+    display: flex;
+    justify-content: center;
+}

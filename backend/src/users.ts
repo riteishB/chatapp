@@ -28,7 +28,13 @@ export const getUser = (id: string) => {
 }
 
 export const getConnectedUsersForRoom = (room: string) => {
-    return users.filter((usr) => {
-        usr.room === room
-    })
+    return users
+        .filter((usr) => {
+            return usr.room === room
+        })
+        .map((usr) => usr.name)
+}
+
+export const getUsers = () => {
+    return users
 }

@@ -25,10 +25,12 @@ export default function Chat(props) {
                         <PersonIcon />
                         <span>{user}</span>
                     </span>
+                    <span>
+                        <OnlineUsers />
+                    </span>
                 </div>
                 <Messages />
                 <MessageInput user={user} room={room} />
-                {/* <OnlineUsers /> */}
             </div>
         )
     }
