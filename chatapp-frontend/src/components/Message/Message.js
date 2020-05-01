@@ -10,7 +10,6 @@ import PersonIcon from '@material-ui/icons/Person'
 import './Message.css'
 
 export default function Message(props) {
-    console.log('Props')
     return (
         <div className="msgWell">
             <ListItem>

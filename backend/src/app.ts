@@ -27,7 +27,6 @@ socketio.on('connection', (socket) => {
     })
 
     socket.on('userMsg', (data) => {
-        console.log(data)
         socketio.emit('message', {
             user: data.user,
             message: data.message,
