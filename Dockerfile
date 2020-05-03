@@ -23,4 +23,4 @@ COPY --from=client-build /app/build ./public
 COPY --from=server-build /app/dist ./src
 COPY --from=server-build /app/node_modules ./src/node_modules
 EXPOSE ${PORT}
-RUN node src/app.js
+CMD [ "node", "src/app.js" ]
