@@ -12,6 +12,9 @@ const PORT = process.env.PORT || 3200
 // CORS enabled
 app.use(cors())
 
+// serve static file
+app.use('/', express.static('public'))
+
 // default healthcheck route
 app.get('/healthcheck', ({ res }) => {
     res?.json({
