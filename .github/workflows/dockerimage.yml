@@ -33,4 +33,5 @@ jobs:
           stack: "container"
         env:
           NODE_ENV: production
+      - run: pwd
 
