@@ -23,20 +23,33 @@ app.get('/healthcheck', ({ res }) => {
     })
 })
 
+// make the http server listen in port 3000
+server.listen(PORT, () => {
+    console.log(`Server started at port ${PORT}`)
+})
+
+
 socketio.on('connection', (socket) => {
     socket.on('joinRoom', (userData) => {
         if (userData.user) {
             const id = socket.id
-            addUsers({
-                name: userData.user,
-                room: userData.room,
-                id: id,
-            })
-            socket.join(userData.room)
+            try {
+                addUsers({
+                    name: userData.user,
+                    room: userData.room,
+                    id: id,
+                })
 
-            socketio
-                .to(userData.room)
-                .emit('usersList', getConnectedUsersForRoom(userData.room))
+                socket.emit("userConnected", userData)
+
+                socket.join(userData.room)
+
+                socketio
+                    .to(userData.room)
+                    .emit('usersList', getConnectedUsersForRoom(userData.room))
+            } catch (err) {
+                socket.emit("connectionError", { "error": "Username already taken" })
+            }
         }
     })
 
@@ -44,15 +57,11 @@ socketio.on('connection', (socket) => {
         socketio.to(data.room).emit('message', {
             user: data.user,
             message: data.message,
+            time: new Date()
         })
     })
 
     socket.on('disconnect', () => {
         removeUser(socket.id)
     })
-})
-
-// make the http server listen in port 3000
-server.listen(PORT, () => {
-    console.log(`Server started at port ${PORT}`)
 })

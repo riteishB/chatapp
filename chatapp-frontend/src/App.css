@@ -1,3 +1,22 @@
 body {
     background: #313131;
 }
+
+
+.alert {
+    max-width: 60%;
+    min-width: 40%;
+    background: #f44336;
+    padding: 2rem;
+    color: white;
+}
+
+.alert-header {
+    font-size: 2rem;
+}
+
+.alert-message {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}

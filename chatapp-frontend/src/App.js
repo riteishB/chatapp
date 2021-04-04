@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState, useEffect } from 'react'
 import './App.css'
-import { Link, Route, Switch } from 'react-router-dom'
+import {  Route, Switch } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import socketIOClient from 'socket.io-client'
 import Login from './components/Login/Login'
 import Chat from './components/Chat/Chat'
 
 let SERVER_ENDPOINT
 const env = process.env.NODE_ENV
+
 
 if (env === 'production') {
     SERVER_ENDPOINT = '/'
@@ -16,25 +18,35 @@ if (env === 'production') {
 
 export const socket = socketIOClient(SERVER_ENDPOINT)
 
+
 export default function App() {
     const [user, setUser] = useState()
     const [room, setRoom] = useState()
+    const [error, setError] = useState()
+
+    const history = useHistory()
 
     useEffect(
         () => {
-            socket.emit('joinRoom', {
-                user: user,
-                room: room,
+            socket.on("userConnected", (data) => {
+                setUser(data.user)
+                setRoom(data.room)
+                history.push(`/chat`)
+            })
+
+            socket.on("connectionError", (err) => {
+                setError(err.error)   
             })
         },
-        [user, room]
+        []
     )
+    
 
     return (
         <Switch>
             <Route
                 path="/"
-                component={() => <Login setUser={setUser} setRoom={setRoom} />}
+                component={() => <Login error={error}/>}
                 exact
             />
             <Route
