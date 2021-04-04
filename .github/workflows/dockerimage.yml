@@ -16,3 +16,21 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag material-chat-app:$(date +%s)
+  
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: akhileshns/heroku-deploy@v3.12.12
+    - name: Deploy to heroku
+         with:
+          heroku_api_key: ${{secrets.HEROKU_KEY}}
+          heroku_app_name: "chat-app-deluxe" #Must be unique in Heroku
+          heroku_email: "riteishy2j@gmail.com"
+          usedocker: true
+          env:
+            NODE_ENV: production
+          branch: "master"
+          stack: "container"
+
