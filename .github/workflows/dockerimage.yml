@@ -38,8 +38,5 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_KEY}}
           heroku_app_name: "chat-app-deluxe" #Must be unique in Heroku
           heroku_email: "riteishy2j@gmail.com"
-          usedocker: true
-          branch: "master"
-          stack: "container"
-      run: heroku auth:whoami
+      - run: heroku auth:whoami
 
