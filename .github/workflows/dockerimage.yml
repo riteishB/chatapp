@@ -31,7 +31,5 @@ jobs:
           usedocker: true
           branch: "master"
           stack: "container"
-        env:
-          NODE_ENV: production
       run: pwd
 
