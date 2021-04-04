@@ -1,34 +1,31 @@
-interface User {
-    name: string
-    id: string
-    room: string
-}
-const users: User[] = []
+import { User } from "./interfaces/user"
+import { connectedUsers } from "./userStore/users"
 
 export const addUsers = (user: User) => {
     // check if the user with username already exists
-    const existingUser = users.find(
+    const existingUser = connectedUsers.find(
         (usr) => usr.name === user.name && usr.room === user.room
     )
     // if not add to the list
     if (existingUser) {
-        return Error('Username already exists')
+        throw Error('Username already exists')
     }
-    users.push(user)
-    // else return an error
+    connectedUsers.push(user)
 }
 
 export const removeUser = (id: string) => {
-    const userIndex = users.findIndex((usr) => usr.id === id)
-    users.splice(userIndex, 1)
+    const userIndex = connectedUsers.findIndex((usr) => usr.id === id)
+    if (userIndex > -1) {
+        connectedUsers.splice(userIndex, 1)
+    }
 }
 
 export const getUser = (id: string) => {
-    return users.find((usr) => usr.id === id)
+    return connectedUsers.find((usr) => usr.id === id)
 }
 
 export const getConnectedUsersForRoom = (room: string) => {
-    return users
+    return connectedUsers
         .filter((usr) => {
             return usr.room === room
         })
@@ -36,5 +33,5 @@ export const getConnectedUsersForRoom = (room: string) => {
 }
 
 export const getUsers = () => {
-    return users
+    return connectedUsers
 }

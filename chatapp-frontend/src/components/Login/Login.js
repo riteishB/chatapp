@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { Paper, Button, TextField } from '@material-ui/core'
+import {Paper, Button, TextField } from '@material-ui/core'
+import { socket } from '../../App'
+
 import './Login.css'
 
 export default function Login(props) {
     const [user, setUser] = useState()
     const [room, setRoom] = useState()
-
-    const history = useHistory()
-
+  
     const handleChange = event => {
         if (event.target.id === 'userName') {
             setUser(event.target.value)
@@ -18,10 +17,11 @@ export default function Login(props) {
     }
 
     const joinHandler = () => {
-        if (room && user) {
-            props.setRoom(room)
-            props.setUser(user)
-            history.push('/chat')
+        if (room && user) {                
+            socket.emit('joinRoom', {
+                user: user,
+                room: room,
+            })
         }
     }
 
@@ -54,6 +54,16 @@ export default function Login(props) {
                     </Button>
                 </div>
             </Paper>
+            {props.error &&
+                <div className="alert">
+                      <div className="alert-header">
+                        Error
+                    </div>
+                    <div className="alert-message">
+                        {props.error}
+                    </div>
+                </div>
+            }
         </div>
     )
 }

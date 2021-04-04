@@ -1,13 +1,25 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
     return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
@@ -21,6 +33,8 @@ var socketio = socket_io_1.default(server);
 var PORT = process.env.PORT || 3200;
 // CORS enabled
 app.use(cors_1.default());
+// serve static file
+app.use('/', express_1.default.static('public'));
 // default healthcheck route
 app.get('/healthcheck', function (_a) {
     var res = _a.res;
@@ -33,21 +47,28 @@ socketio.on('connection', function (socket) {
     socket.on('joinRoom', function (userData) {
         if (userData.user) {
             var id = socket.id;
-            users_1.addUsers({
-                name: userData.user,
-                room: userData.room,
-                id: id,
-            });
-            socket.join(userData.room);
-            socketio
-                .to(userData.room)
-                .emit('usersList', users_1.getConnectedUsersForRoom(userData.room));
+            try {
+                users_1.addUsers({
+                    name: userData.user,
+                    room: userData.room,
+                    id: id,
+                });
+                socket.emit("userConnected", userData);
+                socket.join(userData.room);
+                socketio
+                    .to(userData.room)
+                    .emit('usersList', users_1.getConnectedUsersForRoom(userData.room));
+            }
+            catch (err) {
+                console.error(err);
+            }
         }
     });
     socket.on('userMsg', function (data) {
         socketio.to(data.room).emit('message', {
             user: data.user,
             message: data.message,
+            time: new Date()
         });
     });
     socket.on('disconnect', function () {

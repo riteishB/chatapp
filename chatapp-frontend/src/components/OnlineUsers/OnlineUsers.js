@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { socket } from '../../App'
 import { Drawer, IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
@@ -26,6 +26,8 @@ export default function OnlineUsers() {
     socket.on('usersList', users => {
         setUsers(users)
     })
+
+    
     return (
         <div key={anchor}>
             <IconButton
