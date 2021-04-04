@@ -8,8 +8,6 @@
 }
 
 .msgForm input {
-    background: #aee1f9;
-    border: 1px solid #aee1f9;
-    height: 100%;
+    border: 1px solid #313131;
     padding: 1rem;
 }

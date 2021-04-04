@@ -7,7 +7,7 @@
 .drawerHeader {
     height: 2rem;
     padding: 1rem;
-    background: #03a9f4;
+    background: #2196f3;
     color: white;
     font-size: 20px;
     display: flex;
@@ -17,12 +17,14 @@
 
 .onlineUsers {
     height: 90%;
-    overflow-y: scroll;
+    overflow: auto;
     display: flex;
     flex-direction: column;
 }
 
 .onlineUser {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    margin-left: 2rem;
+    font-size: 1.25rem;
 }

@@ -1,24 +1,33 @@
-.message {
-    background: red;
-    height: 2rem;
-    border: 2px solid red;
+.message-user {
+    font-size: 1.1rem;
+    margin-right: 0.25rem;
+}
+
+.message-header {
     display: flex;
-    justify-content: center;
-    padding: 0.5rem;
     align-items: center;
-    border-radius: 15%;
-    color: white;
-    max-width: 30%;
-    flex-direction: column;
 }
 
-.messageUser {
-    border-bottom: 2px solid gray;
-    align-self: flex-start;
-    margin-left: 1rem;
+.message-header-icon {
+    margin-right: 0.5rem;
 }
 
-.msgInfo {
-    align-self: flex-start;
-    margin-left: 1rem;
+.message-time {
+    font-size: 1rem;
+    font-weight: 100;
+    opacity: 70%;
+}
+
+.message-content {
+    margin-left: 3rem;;
+}
+
+.message-well {
+    padding: 0.5rem;
+    border-bottom: 1px solid #dedede;
+}
+
+.message {
+    font-size: 1.25rem;
+    line-height: 1.25;
 }
