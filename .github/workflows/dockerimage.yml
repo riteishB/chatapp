@@ -17,7 +17,7 @@ jobs:
           heroku_app_name: "chat-app-deluxe"
           heroku_email: "riteishy2j@gmail.com"
           justlogin: true
-      - run: heroku auth:whoami
+        run: heroku auth:whoami
 
   build:
     runs-on: ubuntu-latest
@@ -36,5 +36,5 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_KEY}}
           heroku_app_name: "chat-app-deluxe" #Must be unique in Heroku
           heroku_email: "riteishy2j@gmail.com"
-      - run: heroku auth:whoami
+        run: heroku auth:whoami
 
