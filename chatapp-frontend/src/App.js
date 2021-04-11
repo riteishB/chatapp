@@ -1,6 +1,6 @@
-import React, {useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
-import {  Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import socketIOClient from 'socket.io-client'
 import Login from './components/Login/Login'
@@ -22,6 +22,7 @@ export const socket = socketIOClient(SERVER_ENDPOINT)
 export default function App() {
     const [user, setUser] = useState()
     const [room, setRoom] = useState()
+    const [rooms, setRooms] = useState()
     const [error, setError] = useState()
 
     const history = useHistory()
@@ -35,18 +36,22 @@ export default function App() {
             })
 
             socket.on("connectionError", (err) => {
-                setError(err.error)   
+                setError(err.error)
+            })
+
+            socket.on("rooms", (data) => {
+                setRooms(data)
             })
         },
         []
     )
-    
+
 
     return (
         <Switch>
             <Route
                 path="/"
-                component={() => <Login error={error}/>}
+                component={() => <Login error={error} rooms={rooms} />}
                 exact
             />
             <Route

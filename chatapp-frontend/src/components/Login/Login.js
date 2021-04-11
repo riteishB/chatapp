@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import {Paper, Button, TextField } from '@material-ui/core'
+import { Paper, Button, TextField, Select, MenuItem, FormControl, InputLabel } from '@material-ui/core'
 import { socket } from '../../App'
 
 import './Login.css'
 
 export default function Login(props) {
-    const [user, setUser] = useState()
-    const [room, setRoom] = useState()
-  
+    const [user, setUser] = useState('')
+    const [room, setRoom] = useState('')
+
     const handleChange = event => {
         if (event.target.id === 'userName') {
             setUser(event.target.value)
@@ -17,7 +17,7 @@ export default function Login(props) {
     }
 
     const joinHandler = () => {
-        if (room && user) {                
+        if (room && user) {
             socket.emit('joinRoom', {
                 user: user,
                 room: room,
@@ -29,19 +29,28 @@ export default function Login(props) {
         <div className="loginContainer">
             <Paper elevation={3} rounded="true" className="loginForm">
                 <div className="loginFormData">
-                    <TextField
-                        id="userName"
-                        label="Username"
-                        rowsMax={4}
-                        onChange={handleChange}
-                    />
+                    <FormControl>
+                        <TextField
+                            id="userName"
+                            label="Username"
+                            rowsMax={4}
+                            onChange={handleChange}
+                        />
+                    </FormControl>
 
-                    <TextField
-                        id="room"
-                        label="Room"
-                        rowsMax={4}
-                        onChange={handleChange}
-                    />
+                    <FormControl>
+                        <InputLabel id="rooms">Room</InputLabel>
+                        <Select
+                            labelId="rooms"
+                            id="rooms"
+                            value={room}
+                            onChange={handleChange}
+                        >
+                            {props.rooms && props.rooms.map((value, index) => {
+                                return <MenuItem key={index} value={value}>{value}</MenuItem>
+                            })}
+                        </Select>
+                    </FormControl>
                 </div>
 
                 <div className="loginFormButton">
@@ -56,7 +65,7 @@ export default function Login(props) {
             </Paper>
             {props.error &&
                 <div className="alert">
-                      <div className="alert-header">
+                    <div className="alert-header">
                         Error
                     </div>
                     <div className="alert-message">

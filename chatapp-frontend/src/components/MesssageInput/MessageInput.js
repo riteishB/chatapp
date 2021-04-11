@@ -12,6 +12,13 @@ export default function MessageInput(props) {
         setMsg(event.target.value)
     }
 
+    const keyPressed = event => {
+        if (event.key === 'Enter') {
+            setMsg(event.target.value)
+            sendHandler()
+        }
+    }
+
     const sendHandler = () => {
         if (msg) {
             socket.emit('userMsg', {
@@ -24,16 +31,17 @@ export default function MessageInput(props) {
     }
 
     return (
-        <form className="msgForm">
+        <div className="msgForm">
             <TextField
                 id="user-message"
                 onChange={msgHandler}
                 value={msg}
+                onKeyDown={keyPressed}
                 placeholder="Type your msg..."
             />
             <Button variant="outlined" color="primary" onClick={sendHandler}>
                 <SendIcon />
             </Button>
-        </form>
+        </div>
     )
 }
