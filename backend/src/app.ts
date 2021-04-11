@@ -3,6 +3,7 @@ import io from 'socket.io'
 import * as http from 'http'
 import cors from 'cors'
 import { addUsers, removeUser, getConnectedUsersForRoom } from './users'
+import { availableRooms } from './userStore/rooms'
 
 const app = express()
 const server = new http.Server(app)
@@ -30,6 +31,7 @@ server.listen(PORT, () => {
 
 
 socketio.on('connection', (socket) => {
+    socket.emit("rooms", availableRooms)
     socket.on('joinRoom', (userData) => {
         if (userData.user) {
             const id = socket.id
