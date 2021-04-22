@@ -15,11 +15,6 @@
 .message-time {
     font-size: 1rem;
     font-weight: 100;
-    opacity: 70%;
-}
-
-.message-content {
-    margin-left: 3rem;;
 }
 
 .message-well {
@@ -30,4 +25,9 @@
 .message {
     font-size: 1.25rem;
     line-height: 1.25;
+}
+
+.message-header-icon .MuiAvatar-root {
+    width: 24px;
+    height: 24px;
 }

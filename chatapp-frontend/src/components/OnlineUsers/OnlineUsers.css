@@ -1,7 +1,12 @@
 .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
     width: 30%;
     height: 80vh;
-    margin-top: 0.5rem;
+}
+
+.mobileDrawer
+    .MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+    width: 60%;
+    height: 100vh;
 }
 
 .drawerHeader {

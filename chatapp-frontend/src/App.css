@@ -1,7 +1,7 @@
 body {
     background: #313131;
+    margin: 0;
 }
-
 
 .alert {
     max-width: 60%;
@@ -19,4 +19,8 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: capitalize;
+}
+
+.MuiDrawer-paper {
+    margin-top: 0 !important;
 }
