@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker build . --file Dockerfile --tag material-chat-app:$(date +%s)
+        if: ${{ github.ref != 'refs/heads/master' }}
   
   deploy-app:
     runs-on: ubuntu-latest
@@ -23,7 +24,6 @@ jobs:
           heroku_app_name: "chat-app-deluxe"
           heroku_email: "riteishy2j@gmail.com"
           usedocker: true
-      - run: heroku auth:whoami
         if: ${{ github.ref == 'refs/heads/master' }}
   
 
