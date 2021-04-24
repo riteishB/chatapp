@@ -63,6 +63,14 @@ socketio.on('connection', (socket) => {
         })
     })
 
+    socket.on('userJoinedRoom', (data: {user: string, room:string}) => {
+        socketio.to(data.room).emit('message', {
+            user: 'ADMIN',
+            message: `${data.user} joined the room!`,
+            time: new Date()
+        })
+    })
+
     socket.on('disconnect', () => {
         removeUser(socket.id)
     })

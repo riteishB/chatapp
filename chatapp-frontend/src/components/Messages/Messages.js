@@ -15,9 +15,12 @@ export default function Messages() {
         [message]
     )
 
-    socket.on('message', message => {
-        setMessage(message)
-    })
+    useEffect(() =>{
+        socket.on('message', message => {
+            setMessage(message)
+        })
+    
+    },[])   
 
     return (
         <Container className="messagesContainer">
