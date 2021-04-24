@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker build . --file Dockerfile --tag material-chat-app:$(date +%s)
-        if: ${{ github.ref !== 'refs/heads/master' }}
+        if: ${{ github.ref != 'refs/heads/master' }}
   
   deploy-app:
     runs-on: ubuntu-latest
