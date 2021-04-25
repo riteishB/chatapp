@@ -29,9 +29,8 @@ server.listen(PORT, () => {
     console.log(`Server started at port ${PORT}`)
 })
 
-
 socketio.on('connection', (socket) => {
-    socket.emit("rooms", availableRooms)
+    socket.emit('rooms', availableRooms)
     socket.on('joinRoom', (userData) => {
         if (userData.user) {
             const id = socket.id
@@ -42,36 +41,52 @@ socketio.on('connection', (socket) => {
                     id: id,
                 })
 
-                socket.emit("userConnected", userData)
+                socket.emit('userConnected', userData)
 
                 socket.join(userData.room)
 
                 socketio
                     .to(userData.room)
                     .emit('usersList', getConnectedUsersForRoom(userData.room))
+
+                socket.on('userMsg', (data) => {
+                    socketio.to(data.room).emit('message', {
+                        user: data.user,
+                        message: data.message,
+                        time: new Date(),
+                    })
+                })
+
+                socket.on(
+                    'userJoinedRoom',
+                    (data: { user: string; room: string }) => {
+                        socketio.to(data.room).emit('message', {
+                            user: 'ADMIN',
+                            message: `${data.user} joined the room!`,
+                            time: new Date(),
+                        })
+                    }
+                )
+
+                socket.on('disconnect', () => {
+                    removeUser(socket.id)
+                    socketio
+                        .to(userData.room)
+                        .emit(
+                            'usersList',
+                            getConnectedUsersForRoom(userData.room)
+                        )
+                    socketio.to(userData.room).emit('message', {
+                        user: 'ADMIN',
+                        message: `${userData.user} left the room!`,
+                        time: new Date(),
+                    })
+                })
             } catch (err) {
-                socket.emit("connectionError", { "error": "Username already taken" })
+                socket.emit('connectionError', {
+                    error: 'Username already taken',
+                })
             }
         }
-    })
-
-    socket.on('userMsg', (data) => {
-        socketio.to(data.room).emit('message', {
-            user: data.user,
-            message: data.message,
-            time: new Date()
-        })
-    })
-
-    socket.on('userJoinedRoom', (data: {user: string, room:string}) => {
-        socketio.to(data.room).emit('message', {
-            user: 'ADMIN',
-            message: `${data.user} joined the room!`,
-            time: new Date()
-        })
-    })
-
-    socket.on('disconnect', () => {
-        removeUser(socket.id)
     })
 })
