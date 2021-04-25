@@ -4,7 +4,6 @@ import Messages from '../Messages/Messages'
 import MessageInput from '../MesssageInput/MessageInput'
 import OnlineUsers from '../OnlineUsers/OnlineUsers'
 import PersonIcon from '@material-ui/icons/Person'
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined'
 import {
     isMobile
 } from "react-device-detect"
@@ -18,7 +17,7 @@ export default function Chat(props) {
 
     useEffect(
         () => {
-            socket.emit("userJoinedRoom", {user, room})
+            socket.emit("userJoinedRoom", { user, room })
         },
         []
     )
@@ -29,19 +28,15 @@ export default function Chat(props) {
         return (
             <div className={isMobile ? "chatContainer--mobile" : "chatContainer"}>
                 <div className="chatHeader">
-                    <span className="room">
-                        <HomeOutlinedIcon />
-                        <span>{room}</span>
-                    </span>
                     <span className="user">
                         <PersonIcon />
-                        <span>{user}</span>
+                        <span>{user} ({room})</span>
                     </span>
                     <span>
                         <OnlineUsers />
                     </span>
                 </div>
-                <Messages />
+                <Messages loggedInUser={user} />
                 <MessageInput user={user} room={room} />
             </div >
         )

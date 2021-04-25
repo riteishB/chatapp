@@ -1,8 +1,8 @@
 FROM 'mhart/alpine-node' AS client-build
 WORKDIR /app
 COPY ./chatapp-frontend/package*.json ./
-RUN npm install yarn
-RUN yarn install
+RUN npm install yarn --force
+RUN yarn install --force
 COPY ./chatapp-frontend/src ./src
 COPY ./chatapp-frontend/public ./public
 RUN npm run build

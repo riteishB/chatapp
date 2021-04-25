@@ -19,7 +19,15 @@
 
 .message-well {
     padding: 0.5rem;
-    border-bottom: 1px solid #dedede;
+    background: #2196f3;
+    color: white;
+    margin-bottom: 0.5rem;
+    width: 75%;
+}
+
+.full .message-well {
+    width: auto;
+    background-color: #009688;
 }
 
 .message {
